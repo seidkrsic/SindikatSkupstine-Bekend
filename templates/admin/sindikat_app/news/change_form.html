@@ -1,0 +1,11 @@
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+    {{ block.super }}
+    {% if original.opts.app_label == 'sindikat_app' and original.opts.model_name == 'news' %}
+        <fieldset class="module aligned">
+            <legend>Images</legend>
+            {{ adminform.form.images }}
+        </fieldset>
+    {% endif %}
+{% endblock %}
