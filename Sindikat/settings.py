@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mja(pmr7efz+s(c=!0rq02i9j072sc$kaxn@3d05w0j1io527=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -211,7 +211,7 @@ MEDIA_URL = "images/"
 MEDIA_ROOT = BASE_DIR / 'images/'
 
 
-IMAGES_URL = "http://127.0.0.1:8000/images/"
+IMAGES_URL = "http://192.168.25.78:8000/images/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
