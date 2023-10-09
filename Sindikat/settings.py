@@ -149,7 +149,7 @@ WSGI_APPLICATION = 'Sindikat.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'SindikatDB',
+        'NAME': 'Sindikatdb',
         'USER': 'seid',
         'PASSWORD': 'Seidkrsic@22',
         'HOST': '192.168.25.78',  # If your PostgreSQL server is running locally
