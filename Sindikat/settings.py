@@ -152,7 +152,7 @@ DATABASES = {
         'NAME': 'SindikatDB',
         'USER': 'seid',
         'PASSWORD': 'Seidkrsic@22',
-        'HOST': 'localhost',  # If your PostgreSQL server is running locally
+        'HOST': '192.168.25.78',  # If your PostgreSQL server is running locally
         'PORT': '',            # Leave empty to use the default PostgreSQL port (5432)
     }
 }
