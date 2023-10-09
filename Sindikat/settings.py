@@ -146,22 +146,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Sindikat.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'juveeeee',
+        'NAME': 'SindikatDB',
+        'USER': 'seid',
+        'PASSWORD': 'Seidkrsic@22',
         'HOST': 'localhost',  # If your PostgreSQL server is running locally
         'PORT': '',            # Leave empty to use the default PostgreSQL port (5432)
     }
