@@ -24,9 +24,9 @@ from django.utils.translation import gettext as _
 SECRET_KEY = 'django-insecure-mja(pmr7efz+s(c=!0rq02i9j072sc$kaxn@3d05w0j1io527='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.25.78"]
 
 
 # Application definition
