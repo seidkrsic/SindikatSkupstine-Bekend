@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mja(pmr7efz+s(c=!0rq02i9j072sc$kaxn@3d05w0j1io527=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True 
 
-ALLOWED_HOSTS = ["192.168.25.78"]
+ALLOWED_HOSTS = ["192.168.25.78", "127.0.0.1"]
 
 
 # Application definition
@@ -147,6 +147,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Sindikat.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 DATABASES = {
     'default': {
