@@ -48,7 +48,7 @@ class ImportantDocumentSerializer(serializers.ModelSerializer):
         return file
 
     def get_download_link(self,obj): 
-        download_link = "http://127.0.0.1:8000/api/importantDocuments/" + str(obj.id) + "/download/" 
+        download_link = "http://www.apisindikat.skupstina.me/api/importantDocuments/" + str(obj.id) + "/download/" 
         return download_link
     
     def get_created_eu_time(self,obj): 
@@ -84,7 +84,7 @@ class CompanyDocumentSerializer(serializers.ModelSerializer):
         return file
     
     def get_download_link(self,obj): 
-        download_link = "http://127.0.0.1:8000/api/importantDocuments/" + str(obj.id) + "/download/" 
+        download_link = "http://www.apisindikat.skupstina.me/api/importantDocuments/" + str(obj.id) + "/download/" 
         return download_link
     
     def get_created_eu_time(self,obj): 
@@ -100,7 +100,7 @@ class DocumentSerializer(serializers.ModelSerializer):
         fields = "__all__"
     
     def get_download_link(self,obj): 
-        download_link = "http://127.0.0.1:8000/api/importantDocuments/" + str(obj.id) + "/download/" 
+        download_link = "http://www.apisindikat.skupstina.me/api/importantDocuments/" + str(obj.id) + "/download/" 
         return download_link
     
     def get_created_eu_time(self,obj): 
