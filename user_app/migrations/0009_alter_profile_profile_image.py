@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='profile',
             name='profile_image',
-            field=models.ImageField(blank=True, default='http://127.0.0.1:8000/images//ArtBoard_2.png', null=True, upload_to=''),
+            field=models.ImageField(blank=True, default='http://apisindikat.skupstina.me/images//ArtBoard_2.png', null=True, upload_to=''),
         ),
     ]
