@@ -127,6 +127,8 @@ def translate_latinic_to_cyrillic(text):
 # MODELS FOR USERS ....................................................................
 
 class Profile(models.Model): 
+    class Meta: 
+        ordering = ['name']
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name='profile') 
     name = models.CharField(max_length=200, null=True) 
     name_cyrillic = models.CharField(max_length=200, blank=True, null=True) 
