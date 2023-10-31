@@ -145,20 +145,20 @@ def download_important_document(request, pk):
 
 @api_view(["GET"])
 def get_board_members(request): 
-    board_members = Profile.objects.filter(board_member=True)
+    board_members = Profile.objects.filter(board_member=True).order_by('name')
     serializer = ProfileSerializer(instance=board_members, many=True)
     return Response(serializer.data)
 
 @api_view(["GET"])
 def get_commission(request): 
-    commission = Profile.objects.filter(commission=True)
+    commission = Profile.objects.filter(commission=True).order_by('name')
     serializer = ProfileSerializer(instance=commission, many=True)
     return Response(serializer.data)
 
 
 @api_view(["GET"])
 def get_presidents(request): 
-    presidents = Profile.objects.filter(president=True)
+    presidents = Profile.objects.filter(president=True).order_by('name')
     serializer = ProfileSerializer(instance=presidents, many=True)
     return Response(serializer.data)
 
