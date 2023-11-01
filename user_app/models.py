@@ -167,7 +167,7 @@ class Profile(models.Model):
         elif self.secretary: 
             return ("Generalni Sekretar", "Генерални Секретар")
         elif self.president: 
-            return ("Bivši Predsjednik", "Бивши Предсједник")
+            return ("Bivši predsjednik", "Бивши предсједник")
         else: 
             return ("Član Sindikata", "Члан Синдиката")
 
