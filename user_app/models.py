@@ -135,9 +135,6 @@ def translate_latinic_to_cyrillic(text):
     return translated_text
 
 
-
-
-
 # MODELS FOR USERS ....................................................................
 
 class Profile(models.Model): 
@@ -155,18 +152,19 @@ class Profile(models.Model):
     secretary = models.BooleanField(default=False, blank=True, null=True)
     board_member = models.BooleanField(default=False, blank=True, null=True)
     commission = models.BooleanField(default=False, blank=True, null=True)
-    bio = models.RichTextField(null=True)  
-    bio_cyrillic= models.RichTextField(blank=True, null=True) 
+    bio = RichTextField(null=True)  
+    bio_cyrillic= RichTextField(blank=True, null=True) 
     profile_image = models.ImageField(blank=True, null=True, upload_to='', default=f"ArtBoard_2.png")
     created = models.DateTimeField(auto_now_add=True) 
     id = models.UUIDField(default=uuid.uuid4,unique=True, 
                                     primary_key=True, editable=False) 
- 
+                                
     def __str__(self): 
         try: 
             return self.username 
         except: 
             return self.id 
+
 
     @property
     def get_active_role(self): 

@@ -8,6 +8,10 @@ from django.dispatch import receiver
 import string 
 # Create your models here.
 
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from bs4 import BeautifulSoup
+
 
 class Company(models.Model): 
     class Meta:
@@ -201,10 +205,6 @@ LATINIC_TO_CYRILLIC = {
 }
 
 # HERE ARE SIGNALS FOR CYRILLIC 
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from bs4 import BeautifulSoup
-
 
 
 def translate_latinic_to_cyrillic(text):
