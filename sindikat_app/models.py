@@ -207,6 +207,8 @@ from django.dispatch import receiver
 from bs4 import BeautifulSoup
 
 def translate_latinic_to_cyrillic(text):
+    if text[0:2] == "$$" and text[-2:] == "$$": 
+        return text  
     translated_text = ''
     char = 0
     while char < len(text):

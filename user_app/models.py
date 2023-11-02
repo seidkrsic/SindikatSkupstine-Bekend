@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User 
 import uuid 
 import string 
+from ckeditor.fields import RichTextField
 from django.conf import settings
+from bs4 import BeautifulSoup
 
 # Create your models here.
 
@@ -41,8 +43,18 @@ def populate_content_cyrillic(sender, instance, **kwargs):
         instance.name_cyrillic = translated_name
 
     if instance.bio:  # Assuming name_latinic is the field to be translated
-        translated_name = translate_latinic_to_cyrillic(instance.bio)
-        instance.bio_cyrillic = translated_name
+        content = instance.bio 
+        # Parse the HTML content using Beautiful Soup
+        soup = BeautifulSoup(content, 'html.parser')
+
+        # Translate text nodes within the HTML
+        for element in soup.find_all(string=True):
+            if element.parent.name not in ['script', 'style']:
+                translated_text = translate_latinic_to_cyrillic(element.string)
+                element.string.replace_with(translated_text)
+        # Print the modified HTML content
+        soup = str(soup) 
+        instance.bio_cyrillic = soup
 
 
 LATINIC_TO_CYRILLIC = {
@@ -79,6 +91,8 @@ LATINIC_TO_CYRILLIC = {
 }
 
 def translate_latinic_to_cyrillic(text):
+    if text[0:2] == "$$" and text[-2:] == "$$": 
+        return text  
     translated_text = ''
     char = 0
     while char < len(text):
@@ -141,9 +155,9 @@ class Profile(models.Model):
     secretary = models.BooleanField(default=False, blank=True, null=True)
     board_member = models.BooleanField(default=False, blank=True, null=True)
     commission = models.BooleanField(default=False, blank=True, null=True)
-    bio = models.TextField(null=True) 
+    bio = models.RichTextField(null=True)  
     bio_cyrillic= models.TextField(blank=True, null=True) 
-    profile_image = models.ImageField(blank=True, null=True, upload_to='', default=f"Artboard_2.png")
+    profile_image = models.ImageField(blank=True, null=True, upload_to='', default=f"ArtBoard_2.png")
     created = models.DateTimeField(auto_now_add=True) 
     id = models.UUIDField(default=uuid.uuid4,unique=True, 
                                     primary_key=True, editable=False) 
