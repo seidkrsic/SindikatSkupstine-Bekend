@@ -200,11 +200,12 @@ LATINIC_TO_CYRILLIC = {
     'ž': 'ж', 'Ž': 'Ж'
 }
 
-
 # HERE ARE SIGNALS FOR CYRILLIC 
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from bs4 import BeautifulSoup
+
+
 
 def translate_latinic_to_cyrillic(text):
     if text[0:2] == "$$" and text[-2:] == "$$": 
