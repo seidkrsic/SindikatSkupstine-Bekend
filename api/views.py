@@ -107,7 +107,7 @@ def getSession(request, pk):
     return Response(serializer.errors)
 
 
-@api_view(["GET"])
+@api_view(["PUT"])
 @permission_classes([IsAuthenticated])
 def importantDocuments(request): 
     documents = ImportantDocument.objects.all()
