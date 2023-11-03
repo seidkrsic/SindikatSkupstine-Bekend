@@ -93,11 +93,13 @@ LATINIC_TO_CYRILLIC = {
 def translate_latinic_to_cyrillic(text):
     test_text = text.split(" ")
     translated_text = ''
-    char = 0
+    
     for word in test_text: 
         if word[0:2] == "$$" and word[-2:] == "$$": 
-             translated_text += word
+            translated_text += " " + word[2:len(word)-2] + " "
+            continue 
         else: 
+            char = 0
             while char < len(word):
                 if word[char] not in string.punctuation:
                     if word[char] == "L" or word[char] == "l":
