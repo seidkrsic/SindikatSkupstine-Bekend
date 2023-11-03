@@ -30,17 +30,17 @@ class ProfileSerializer(serializers.ModelSerializer):
         if obj.active_president: 
             return ("Predsjednik", "Предсједник")
         elif obj.vice_president: 
-            return ("Zamjenik Predsjednika", "Замјеник Предсједника")
+            return ("Zamjenik predsjednika", "Замјеник предсједника")
         elif obj.board_member: 
-            return ("Član Izvršnog Odbora", "Члан Извршног Одбора")
+            return ("Član Izvršnog odbora", "Члан Извршног одбора")
         elif obj.commission:
-            return ("Član Statutarne Komisije", "Члан Статутарне Комисије")
-        elif obj.secretary: 
-            return ("Generalni Sekretar", "Генерални Секретар")
+            return ("Član Statutarne komisije", "Члан Статутарне комисије")
+        elif obj.main_board_member: 
+            return ("Nadzorni odbor", "Надзорни одбор")
         elif obj.president: 
-            return ("Bivši Predsjednik", "Бивши Предсједник")
+            return ("Bivši predsjednik", "Бивши предсједник")
         else: 
-            return ("Član Sindikata", "Члан Синдиката")
+            return ("Član sindikata", "Члан синдиката")
         
 
 

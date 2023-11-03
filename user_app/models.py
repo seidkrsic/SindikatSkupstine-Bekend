@@ -155,7 +155,7 @@ class Profile(models.Model):
     active_president = models.BooleanField(default=False, blank=True, null=True)
     president = models.BooleanField(default=False, blank=True, null=True)
     vice_president = models.BooleanField(default=False, blank=True, null=True)
-    secretary = models.BooleanField(default=False, blank=True, null=True)
+    main_board_member = models.BooleanField(default=False, blank=True, null=True)
     board_member = models.BooleanField(default=False, blank=True, null=True)
     commission = models.BooleanField(default=False, blank=True, null=True)
     bio = RichTextField(null=True)  
@@ -171,21 +171,20 @@ class Profile(models.Model):
         except: 
             return self.id 
 
-
     @property
     def get_active_role(self): 
         if self.active_president: 
             return ("Predsjednik", "Предсједник")
         elif self.vice_president: 
-            return ("Zamjenik Predsjednika", "Замјеник Предсједника")
+            return ("Zamjenik predsjednika", "Замјеник предсједника")
         elif self.board_member: 
-            return ("Član Izvršnog Odbora", "Члан Извршног Одбора")
+            return ("Član Izvršnog odbora", "Члан Извршног одбора")
         elif self.commission:
-            return ("Član Statutarne Komisije", "Члан Статутарне Комисије")
-        elif self.secretary: 
-            return ("Generalni Sekretar", "Генерални Секретар")
+            return ("Član Statutarne komisije", "Члан Статутарне комисије")
+        elif self.main_board_member: 
+            return ("Nadzorni odbor", "Надзорни одбор")
         elif self.president: 
             return ("Bivši predsjednik", "Бивши предсједник")
         else: 
-            return ("Član Sindikata", "Члан Синдиката")
+            return ("Član sindikata", "Члан синдиката")
 
