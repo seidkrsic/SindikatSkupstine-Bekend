@@ -135,7 +135,8 @@ def translate_latinic_to_cyrillic(text):
                         char = char + 1
                 else:
                     translated_text += word[char]
-                    char = char + 1
+                    char = char + 1 
+        translated_text += " "
 
     return translated_text
 
