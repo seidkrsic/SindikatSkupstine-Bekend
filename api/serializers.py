@@ -11,10 +11,10 @@ def remove_dollars_sign(text):
     translated_text = ''
     for word in test_text: 
         if word[0:2] == "$$" and word[-2:] == "$$": 
-            translated_text += " " + word[2:len(word)-2]
+            translated_text += word[2:len(word)-2] + " "
             continue  
         else: 
-            translated_text += " " + word 
+            translated_text += word + " "
     return translated_text
 
 
