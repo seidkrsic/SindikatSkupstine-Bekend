@@ -91,46 +91,49 @@ LATINIC_TO_CYRILLIC = {
 }
 
 def translate_latinic_to_cyrillic(text):
-    if text[0:2] == "$$" and text[-2:] == "$$": 
-        return text  
+    test_text = text.split(" ")
     translated_text = ''
     char = 0
-    while char < len(text):
-        if text[char] not in string.punctuation:
-            if text[char] == "L" or text[char] == "l":
-                if char + 1 < len(text) and text[char + 1] == "j":
-                    translated_char = LATINIC_TO_CYRILLIC.get(text[char:char + 2], text[char:char + 2])
-                    translated_text += translated_char
-                    char = char + 2
+    for word in test_text: 
+        if word[0:2] == "$$" and word[-2:] == "$$": 
+             translated_text += word
+        else: 
+            while char < len(word):
+                if word[char] not in string.punctuation:
+                    if word[char] == "L" or word[char] == "l":
+                        if char + 1 < len(word) and word[char + 1] == "j":
+                            translated_char = LATINIC_TO_CYRILLIC.get(word[char:char + 2], word[char:char + 2])
+                            translated_text += translated_char
+                            char = char + 2
+                        else:
+                            translated_char = LATINIC_TO_CYRILLIC.get(word[char], word[char])
+                            translated_text += translated_char
+                            char = char + 1
+                    elif word[char] == "N" or word[char] == "n":
+                        if char + 1 < len(word) and word[char + 1] == "j":
+                            translated_char = LATINIC_TO_CYRILLIC.get(word[char:char + 2], word[char:char + 2])
+                            translated_text += translated_char
+                            char = char + 2
+                        else:
+                            translated_char = LATINIC_TO_CYRILLIC.get(word[char], word[char])
+                            translated_text += translated_char
+                            char = char + 1
+                    elif word[char] == "D" or word[char] == "d":
+                        if char + 1 < len(word) and word[char + 1] == "\u017E":
+                            translated_char = LATINIC_TO_CYRILLIC.get(word[char:char + 2], word[char:char + 2])
+                            translated_text += translated_char
+                            char = char + 2
+                        else:
+                            translated_char = LATINIC_TO_CYRILLIC.get(word[char], word[char])
+                            translated_text += translated_char
+                            char = char + 1
+                    else:
+                        translated_char = LATINIC_TO_CYRILLIC.get(word[char], word[char])
+                        translated_text += translated_char
+                        char = char + 1
                 else:
-                    translated_char = LATINIC_TO_CYRILLIC.get(text[char], text[char])
-                    translated_text += translated_char
+                    translated_text += word[char]
                     char = char + 1
-            elif text[char] == "N" or text[char] == "n":
-                if char + 1 < len(text) and text[char + 1] == "j":
-                    translated_char = LATINIC_TO_CYRILLIC.get(text[char:char + 2], text[char:char + 2])
-                    translated_text += translated_char
-                    char = char + 2
-                else:
-                    translated_char = LATINIC_TO_CYRILLIC.get(text[char], text[char])
-                    translated_text += translated_char
-                    char = char + 1
-            elif text[char] == "D" or text[char] == "d":
-                if char + 1 < len(text) and text[char + 1] == "\u017E":
-                    translated_char = LATINIC_TO_CYRILLIC.get(text[char:char + 2], text[char:char + 2])
-                    translated_text += translated_char
-                    char = char + 2
-                else:
-                    translated_char = LATINIC_TO_CYRILLIC.get(text[char], text[char])
-                    translated_text += translated_char
-                    char = char + 1
-            else:
-                translated_char = LATINIC_TO_CYRILLIC.get(text[char], text[char])
-                translated_text += translated_char
-                char = char + 1
-        else:
-            translated_text += text[char]
-            char = char + 1
 
     return translated_text
 
