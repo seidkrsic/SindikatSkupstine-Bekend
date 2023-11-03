@@ -2,13 +2,26 @@ from rest_framework import serializers
 from sindikat_app.models import Agenda_Item, Company, CompanyDocument, Document, News, Image, Session, ImportantDocument
 from user_app.models import Profile 
 from django.conf import settings
+from bs4 import BeautifulSoup
 
 
+
+def remove_dollars_sign(text): 
+    test_text = text.split(" ")
+    translated_text = ''
+    for word in test_text: 
+        if word[0:2] == "$$" and word[-2:] == "$$": 
+            translated_text += " " + word[2:len(word)-2]
+            continue  
+        else: 
+            translated_text += " " + word 
+    return translated_text
 
 
 class ProfileSerializer(serializers.ModelSerializer): 
     profile_image = serializers.SerializerMethodField()
     active_role = serializers.SerializerMethodField()
+    nice_bio = serializers.SerializerMethodField()
     class Meta: 
         model = Profile
         fields = "__all__"
@@ -34,6 +47,23 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_profile_image(self,obj): 
         profile_image = settings.IMAGES_URL + str(obj.profile_image)
         return profile_image 
+    
+    def get_nice_bio(self,obj): 
+        content = obj.bio 
+        if obj.bio: 
+            soup = BeautifulSoup(content, 'html.parser')
+
+            # Translate text nodes within the HTML
+            for element in soup.find_all(string=True):
+                if element.parent.name not in ['script', 'style']:
+                    translated_text = remove_dollars_sign(element.string)
+                    element.string.replace_with(translated_text)
+            # Print the modified HTML content
+            soup = str(soup) 
+            return soup 
+        else: 
+            return ""
+
 
 class ImportantDocumentSerializer(serializers.ModelSerializer): 
     file = serializers.SerializerMethodField()
