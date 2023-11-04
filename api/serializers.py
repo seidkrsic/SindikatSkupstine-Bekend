@@ -225,6 +225,8 @@ class NewsSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     gallery = serializers.SerializerMethodField()
     created_eu_time = serializers.SerializerMethodField()
+    nice_content = serializers.SerializerMethodField()
+    nice_title = serializers.SerializerMethodField()
     
     class Meta: 
         model = News
@@ -242,4 +244,24 @@ class NewsSerializer(serializers.ModelSerializer):
         serializer = ImageSerializer(instance=gallery, many=True)
         return serializer.data  
 
-   
+    def get_nice_title(self, obj): 
+        if obj.title: 
+            return remove_dollars_sign(obj.title)
+        else: 
+            return ""
+
+    def get_nice_content(self,obj): 
+        if obj.content: 
+            content = obj.content
+            soup = BeautifulSoup(content, 'html.parser')
+
+            # Translate text nodes within the HTML
+            for element in soup.find_all(string=True):
+                if element.parent.name not in ['script', 'style']:
+                    translated_text = remove_dollars_sign(element.string)
+                    element.string.replace_with(translated_text)
+            # Print the modified HTML content
+            soup = str(soup) 
+            return soup 
+        else: 
+            return ""
