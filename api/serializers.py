@@ -201,6 +201,8 @@ class NewsSerializerForSlides(serializers.ModelSerializer):
     def get_title(self, obj): 
         if obj.title: 
             return remove_dollars_sign(obj.title)
+        else: 
+            return ""
 
     def get_content(self,obj): 
         if obj.content: 
