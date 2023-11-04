@@ -22,6 +22,7 @@ urlpatterns = [
     path('important/', views.importantDocuments),
     path('documents/', views.get_important_documents),
     path("companies/", views.getCompany),
+    path("allDocuments", views.get_all_documents),
 
 
     path('boardMembers/', views.get_board_members),
@@ -32,7 +33,7 @@ urlpatterns = [
     path('paginationNews/', views.get_paginated_news),
     path("getPresident/", views.get_president), 
     path("getVicePresident/", views.get_vice_president), 
-    path("getSecretary/", views.get_secretary), 
+    path("getMainBoardMembers/", views.get_main_board_members), 
 
 
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),

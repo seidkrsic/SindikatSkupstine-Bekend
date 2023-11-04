@@ -121,6 +121,14 @@ def get_important_documents(request):
     return Response(serializer.data)
 
 
+@api_view(["GET"])
+def get_all_documents(request):
+    important_documents = ImportantDocument.objects.exclude(important=True)
+    if important_documents: 
+        serializer = ImportantDocumentSerializer(instance=important_documents, many=True)
+        return Response(serializer.data)
+    return Response("No documents in db.")
+
 
 @api_view(['GET'])
 def download_important_document(request, pk):
@@ -182,10 +190,12 @@ def get_vice_president(request):
     return Response(serializer.data) 
 
 @api_view(["GET"]) 
-def get_secretary(request): 
-    profile = Profile.objects.filter(secretary=True).first()
-    serializer = ProfileSerializer(instance=profile, many=False) 
-    return Response(serializer.data) 
+def get_main_board_members(request): 
+    profile = Profile.objects.filter(main_board_member=True)
+    if profile: 
+        serializer = ProfileSerializer(instance=profile, many=True) 
+        return Response(serializer.data) 
+    return Response({"No entries in db."})
 
 
 
