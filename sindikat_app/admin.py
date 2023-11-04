@@ -76,20 +76,25 @@ class CompanyAdmin(admin.ModelAdmin):
 
 
 
+
+class ImportantDocumentsForm(forms.ModelForm):
+    class Meta:
+        model = ImportantDocument
+        fields = '__all__'
+        widgets = {
+                'important': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+                'legislation': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+                'laws': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+                'regulations': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+            
+        }
+
 class ImportantDocumentsAdmin(admin.ModelAdmin):
     # Customize the child model admin as needed
     list_filter = ['created']
     list_display = ['title', "created"]
     exclude = ['title_cyrillic']
-    widgets = {
-            'important': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
-            'legislation': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
-            'laws': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
-            'regulations': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
-            
-
-           
-        }
+    
    
     
 
