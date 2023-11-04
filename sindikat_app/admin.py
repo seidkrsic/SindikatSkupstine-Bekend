@@ -167,7 +167,7 @@ admin.site.register(Session, SessionAdmin)
 admin.site.register(Agenda_Item, Agenda_ItemsAdmin)
 admin.site.register(Document, DocumentsAdmin) 
 admin.site.register(Image, ImagesAdmin)
-admin.site.register(ImportantDocument,ImportantDocumentsAdmin)
+admin.site.register(ImportantDocument, ImportantDocumentsAdmin)
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(CompanyDocument, CompanyDocumentsAdmin)
 

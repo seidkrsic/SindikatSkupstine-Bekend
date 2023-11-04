@@ -36,11 +36,11 @@ class ImportantDocument(models.Model):
     class Meta:
         verbose_name = 'Single Document'
         verbose_name_plural = 'Single Documents'
-    file = models.FileField(upload_to='documents/', blank=True, null=True)
-    important = models.BooleanField(default=False, null=True)
-    legislation = models.BooleanField(default=False, null=True)
-    laws = models.BooleanField(default=False, null=True)
-    regulations = models.BooleanField(default=False, null=True)
+    file = models.FileField(upload_to='documents/', blank=False, null=True)
+    important = models.BooleanField(default=False, null=True, blank=True)
+    legislation = models.BooleanField(default=False, null=True, blank=True)
+    laws = models.BooleanField(default=False, null=True, blank=True)
+    regulations = models.BooleanField(default=False, null=True, blank=True)
     title = models.CharField(max_length=200, blank=False, null=True) 
     title_cyrillic = models.CharField(max_length=200, blank=True, null=True) 
     created = models.DateTimeField(auto_now_add=True) 
