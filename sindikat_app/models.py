@@ -38,6 +38,9 @@ class ImportantDocument(models.Model):
         verbose_name_plural = 'Single Documents'
     file = models.FileField(upload_to='documents/', blank=True, null=True)
     important = models.BooleanField(default=False, null=True)
+    legislation = models.BooleanField(default=False, null=True)
+    laws = models.BooleanField(default=False, null=True)
+    regulations = models.BooleanField(default=False, null=True)
     title = models.CharField(max_length=200, blank=False, null=True) 
     title_cyrillic = models.CharField(max_length=200, blank=True, null=True) 
     created = models.DateTimeField(auto_now_add=True) 

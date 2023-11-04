@@ -82,10 +82,15 @@ class ImportantDocumentsAdmin(admin.ModelAdmin):
     list_display = ['title', "created"]
     exclude = ['title_cyrillic']
     widgets = {
-            'important': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No')))
+            'important': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+            'legislation': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+            'laws': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+            'regulations': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+            
+
            
         }
-    # Override get_model_perms to hide the child model from admin index
+   
     
 
 
