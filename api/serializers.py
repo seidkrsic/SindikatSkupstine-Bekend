@@ -205,8 +205,8 @@ class NewsSerializerForSlides(serializers.ModelSerializer):
             return ""
 
     def get_nice_content(self,obj): 
+        content = obj.content
         if obj.content: 
-            content = obj.content
             soup = BeautifulSoup(content, 'html.parser')
 
             # Translate text nodes within the HTML
@@ -251,8 +251,8 @@ class NewsSerializer(serializers.ModelSerializer):
             return ""
 
     def get_nice_content(self,obj): 
+        content = obj.content
         if obj.content: 
-            content = obj.content
             soup = BeautifulSoup(content, 'html.parser')
 
             # Translate text nodes within the HTML
