@@ -91,6 +91,7 @@ class ImportantDocumentsForm(forms.ModelForm):
 
 class ImportantDocumentsAdmin(admin.ModelAdmin):
     # Customize the child model admin as needed
+    form = ImportantDocumentsForm
     list_filter = ['created']
     list_display = ['title', "created"]
     exclude = ['title_cyrillic']
