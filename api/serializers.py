@@ -188,6 +188,8 @@ class ImageSerializerForSlides(serializers.ModelSerializer):
 class NewsSerializerForSlides(serializers.ModelSerializer): 
     owner = ProfileSerializer(many=False) 
     image_url = serializers.SerializerMethodField()
+    content = serializers.SerializerMethodField()
+    title = serializers.SerializerMethodField()
     class Meta: 
         model = News
         fields = "__all__"
@@ -195,8 +197,26 @@ class NewsSerializerForSlides(serializers.ModelSerializer):
     def get_image_url(self,obj): 
         profile_image = settings.IMAGES_URL + str(obj.image_url)
         return profile_image 
+    
+    def get_title(self, obj): 
+        if obj.title: 
+            return remove_dollars_sign(obj.title)
 
+    def get_content(self,obj): 
+        if obj.content: 
+            content = obj.content
+            soup = BeautifulSoup(content, 'html.parser')
 
+            # Translate text nodes within the HTML
+            for element in soup.find_all(string=True):
+                if element.parent.name not in ['script', 'style']:
+                    translated_text = remove_dollars_sign(element.string)
+                    element.string.replace_with(translated_text)
+            # Print the modified HTML content
+            soup = str(soup) 
+            return soup 
+        else: 
+            return ""
 
 class NewsSerializer(serializers.ModelSerializer): 
     owner = ProfileSerializer() 
