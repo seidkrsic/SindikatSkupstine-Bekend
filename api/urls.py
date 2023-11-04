@@ -22,7 +22,7 @@ urlpatterns = [
     path('important/', views.importantDocuments),
     path('documents/', views.get_important_documents),
     path("companies/", views.getCompany),
-    path("allDocuments", views.get_all_documents),
+    path("allDocuments/", views.get_all_documents),
 
 
     path('boardMembers/', views.get_board_members),
