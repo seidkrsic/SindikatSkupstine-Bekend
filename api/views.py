@@ -86,7 +86,7 @@ def getSessions(request):
         category = request.GET.get("name")
     except: 
         category = None
-    print(category)
+
     queryset = Session.objects.all()  # Get all News objects
   
     if category is not None:
@@ -123,10 +123,21 @@ def get_important_documents(request):
 
 @api_view(["GET"])
 def get_all_documents(request):
-    important_documents = ImportantDocument.objects.exclude(important=True)
-    if important_documents: 
-        serializer = ImportantDocumentSerializer(instance=important_documents, many=True)
-        return Response(serializer.data)
+    try: 
+        category = request.GET.get("name")
+    except: 
+        category = None
+    important_documents = ImportantDocument.objects.all()
+    if category is not None:  
+        if category == "legislation": 
+            important_documents = ImportantDocument.objects.filter(legislation=True)
+        elif category == "laws": 
+            important_documents = ImportantDocument.objects.filter(laws=True)
+        elif category == "regulations": 
+            important_documents = ImportantDocument.objects.filter(regulations=True)
+        if important_documents:
+            serializer = ImportantDocumentSerializer(instance=important_documents, many=True)
+            return Response(serializer.data)
     return Response("No documents in db.")
 
 
