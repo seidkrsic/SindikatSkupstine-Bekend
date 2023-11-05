@@ -130,13 +130,13 @@ def get_all_documents(request):
     important_documents = ImportantDocument.objects.all()
     if category is not None:  
         if category == "legislation": 
-            queryset = important_documents.objects.filter(legislation=True)
+            queryset = important_documentsfilter(legislation=True)
         elif category == "laws": 
-            queryset= important_documents.objects.filter(laws=True)
+            queryset= important_documents.filter(laws=True)
         elif category == "regulations": 
-            queryset = important_documents.objects.filter(regulations=True)
+            queryset = important_documents.filter(regulations=True)
         if queryset:
-            serializer = ImportantDocumentSerializer(instance=important_documents, many=True)
+            serializer = ImportantDocumentSerializer(instance=queryset, many=True)
             return Response(serializer.data)
         return Response("Not valid filter.")
 
