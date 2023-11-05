@@ -135,7 +135,7 @@ def get_all_documents(request):
             queryset= important_documents.filter(laws=True)
         elif category == "regulations": 
             queryset = important_documents.filter(regulations=True)
-        if queryset:
+        if category:
             serializer = ImportantDocumentSerializer(instance=queryset, many=True)
             return Response(serializer.data)
         return Response("Not valid filter.")
