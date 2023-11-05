@@ -128,7 +128,7 @@ def get_all_documents(request):
     except: 
         category = None
     important_documents = ImportantDocument.objects.all()
-    if category is not None:  
+    if category is not None and category in ["laws", "legislation", "regulations"]:  
         if category == "legislation": 
             queryset = important_documents.filter(legislation=True)
         elif category == "laws": 
