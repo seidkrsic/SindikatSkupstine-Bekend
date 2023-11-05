@@ -191,7 +191,7 @@ def get_vice_president(request):
 
 @api_view(["GET"]) 
 def get_main_board_members(request): 
-    profile = Profile.objects.filter(main_board_member=True)
+    profile = Profile.objects.filter(main_board_member=True).order_by("username")
     if profile: 
         serializer = ProfileSerializer(instance=profile, many=True) 
         return Response(serializer.data) 
