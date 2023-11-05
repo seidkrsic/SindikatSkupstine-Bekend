@@ -130,7 +130,7 @@ def get_all_documents(request):
     important_documents = ImportantDocument.objects.all()
     if category is not None:  
         if category == "legislation": 
-            queryset = important_documentsfilter(legislation=True)
+            queryset = important_documents.filter(legislation=True)
         elif category == "laws": 
             queryset= important_documents.filter(laws=True)
         elif category == "regulations": 
