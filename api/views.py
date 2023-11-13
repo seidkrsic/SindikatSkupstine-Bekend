@@ -158,7 +158,7 @@ def download_important_document(request, pk):
                 return Response("Document not Found.")
         
     file_path = document.file
-    return FileResponse(file_path, as_attachment=True, filename=document.title)
+    return FileResponse(file_path, as_attachment=True, filename=document.file)
 
 
 
