@@ -11,6 +11,7 @@ from .pagination import NewsPagination
 from django.http import FileResponse
 from rest_framework import status
 from django.shortcuts import get_object_or_404
+import mimetypes
 
 # Create your views here.
 
@@ -157,8 +158,18 @@ def download_important_document(request, pk):
             except: 
                 return Response("Document not Found.")
         
-    file_path = document.file
-    return FileResponse(file_path, as_attachment=True, filename=document.file)
+    # file_path = document.file
+    # return FileResponse(file_path, as_attachment=True, filename=document.title)
+    file_path = document.file.path
+
+    # Koristimo `mimetypes` modul da dobijemo MIME tip fajla
+    mime_type, encoding = mimetypes.guess_type(file_path)
+
+    # Koristimo `FileResponse` sa postavljenim zaglavljima
+    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
+    response['Content-Disposition'] = f'attachment; filename="{document.title}"'
+
+    return response
 
 
 
