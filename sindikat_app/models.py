@@ -81,7 +81,7 @@ class CompanyDocument(models.Model):
         verbose_name = 'Company Document'
         verbose_name_plural = 'Company Documents'
     company = models.OneToOneField(Company, on_delete=models.CASCADE, blank=True, null=True, related_name='company_documents')
-    file = models.FileField(upload_to='documents/', blank=False, null=True)
+    file = models.FileField(upload_to=u'documents/', blank=False, null=True)
     title = models.CharField(max_length=200, blank=False)
     title_cyrillic = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True) 
