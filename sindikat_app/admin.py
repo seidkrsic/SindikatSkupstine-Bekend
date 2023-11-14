@@ -115,7 +115,13 @@ def convert_filenames(sender, instance, **kwargs):
         instance.file.name = f"documents/{ascii_filename}"
 
 
-
+@receiver(pre_save, sender=Image)
+def convert_filenames(sender, instance, **kwargs):
+    # Konverzija imena fajla
+    if instance.image_url:
+        original_filename = str(instance.image_url)
+        ascii_filename = unidecode(original_filename)
+        instance.image_url.name = f'images/{ascii_filename}'
 
 class ImagesAdmin(admin.ModelAdmin):
     # Customize the child model admin as needed
