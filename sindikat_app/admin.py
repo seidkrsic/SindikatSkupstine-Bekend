@@ -105,6 +105,8 @@ class ImportantDocumentsAdmin(admin.ModelAdmin):
 
 
 @receiver(pre_save, sender=ImportantDocument)
+@receiver(pre_save, sender=CompanyDocument)
+@receiver(pre_save, sender=Document)
 def convert_filenames(sender, instance, **kwargs):
     # Konverzija imena fajla
     if instance.file:
