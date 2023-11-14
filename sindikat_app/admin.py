@@ -116,6 +116,7 @@ def convert_filenames(sender, instance, **kwargs):
 
 
 @receiver(pre_save, sender=Image)
+@receiver(pre_save, sender=News)
 def convert_filenames(sender, instance, **kwargs):
     # Konverzija imena fajla
     if instance.image_url:
@@ -178,7 +179,12 @@ class NewsAdmin(admin.ModelAdmin):
             file_format = file.content_type
             print("File format:", file_format)
             if file_format in ['image/jpeg', 'image/jpg', 'image/png']:
-                news_image = Image(news=obj, image_url=file)
+                # Konverzija imena fajla
+                if file:
+                    original_filename = str(file)
+                    ascii_filename = unidecode(original_filename)
+                   
+                news_image = Image(news=obj, image_url=f'images/{ascii_filename}')
                 news_image.save()
             else:
                 print("Skipping non-image file:", file)
