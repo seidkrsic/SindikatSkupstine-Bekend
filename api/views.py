@@ -129,13 +129,15 @@ def get_all_documents(request):
     except: 
         category = None
     important_documents = ImportantDocument.objects.all()
-    if category is not None and category in ["laws", "legislation", "regulations"]:  
+    if category is not None and category in ["laws", "legislation", "regulations", "other"]:  
         if category == "legislation": 
             queryset = important_documents.filter(legislation=True)
         elif category == "laws": 
             queryset= important_documents.filter(laws=True)
         elif category == "regulations": 
             queryset = important_documents.filter(regulations=True)
+        elif category == "other": 
+            queryset = important_documents.filter(other=True)
         if category:
             serializer = ImportantDocumentSerializer(instance=queryset, many=True)
             return Response(serializer.data)

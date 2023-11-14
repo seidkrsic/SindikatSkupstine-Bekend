@@ -86,6 +86,7 @@ class ImportantDocumentsForm(forms.ModelForm):
                 'legislation': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
                 'laws': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
                 'regulations': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
+                'other': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
             
         }
 
