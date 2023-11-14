@@ -4,7 +4,9 @@ from multiupload.fields import MultiFileField  # Import the MultiFileField
 from .models import CompanyDocument, Document, ImportantDocument, News, Image, Agenda_Item, Session, Company 
 from django.utils.html import format_html
 # Register your models here.
-
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+from unidecode import unidecode
 
 class ImageInline(admin.TabularInline):
     model = Image
@@ -97,8 +99,24 @@ class ImportantDocumentsAdmin(admin.ModelAdmin):
     list_display = ['title', "created"]
     exclude = ['title_cyrillic']
     
+    def save_model(self, request, obj, form, change):
+        obj.save()
    
-    
+
+
+@receiver(pre_save, sender=ImportantDocument)
+def convert_filenames(sender, instance, **kwargs):
+    # Konverzija imena fajla
+    if instance.title_cyrillic:
+        original_filename = instance.title_cyrillic
+        ascii_filename = unidecode(original_filename)
+        instance.file.name = f"documents/{ascii_filename}"
+
+    # Konverzija naslova
+    if instance.title:
+        original_title = instance.title
+        ascii_title = unidecode(original_title)
+        instance.title_cyrillic = ascii_title
 
 
 
