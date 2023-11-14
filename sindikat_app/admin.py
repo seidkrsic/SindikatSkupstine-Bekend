@@ -107,16 +107,11 @@ class ImportantDocumentsAdmin(admin.ModelAdmin):
 @receiver(pre_save, sender=ImportantDocument)
 def convert_filenames(sender, instance, **kwargs):
     # Konverzija imena fajla
-    if instance.title_cyrillic:
-        original_filename = instance.title_cyrillic
+    if instance.file:
+        original_filename = instance.file
         ascii_filename = unidecode(original_filename)
-        instance.file.name = f"documents/{ascii_filename}"
+        instance.file = f"{ascii_filename}"
 
-    # Konverzija naslova
-    if instance.title:
-        original_title = instance.title
-        ascii_title = unidecode(original_title)
-        instance.title_cyrillic = ascii_title
 
 
 
