@@ -110,7 +110,7 @@ def convert_filenames(sender, instance, **kwargs):
     if instance.file:
         original_filename = str(instance.file)
         ascii_filename = unidecode(original_filename)
-        instance.file = f"documents/{ascii_filename}"
+        instance.file.name = f"documents/{ascii_filename}"
 
 
 
