@@ -122,7 +122,7 @@ def convert_filenames(sender, instance, **kwargs):
     if instance.image_url:
         original_filename = str(instance.image_url)
         ascii_filename = unidecode(original_filename)
-        instance.image_url.name = f'images/{ascii_filename}'
+        instance.image_url.name = f'{ascii_filename}'
 
 class ImagesAdmin(admin.ModelAdmin):
     # Customize the child model admin as needed
