@@ -12,7 +12,7 @@ from django.http import FileResponse
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.core.files import File
-
+import mimetypes
 # Create your views here.
 
 
@@ -164,13 +164,11 @@ def download_important_document(request, pk):
     file_path = document.file.path
 
     # Koristimo `File` da dobijemo `content_type`
-    with open(file_path, 'rb') as file:
-        django_file = File(file)
-        content_type = django_file.content_type
+    mime_type, _ = mimetypes.guess_type(file_path)
 
 
     # Koristimo `FileResponse` sa postavljenim zaglavljima
-    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=content_type)
+    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
     response['Content-Disposition'] = f'attachment; filename="{document.title}"'
 
     return response
