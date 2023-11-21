@@ -166,21 +166,21 @@ def download_important_document(request, pk):
     # # Koristimo `File` da dobijemo `content_type`
     mime_type, _ = mimetypes.guess_type(file_path)
     
-    # # Koristimo `FileResponse` sa postavljenim zaglavljima
-    # response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
-    # response['Content-Disposition'] = f'attachment; filename="{document.title}"'
+    # Koristimo `FileResponse` sa postavljenim zaglavljima
+    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
+    response['Content-Disposition'] = f'attachment; filename="{document.title}"'
 
-    # return response
+    return response
 
-    json_data = {
-        'filename': document.file.name,
-        'file_size': document.file.size,
-        'file_type': mime_type,
-        "file_path" : document.file.path
-        # Dodajte više informacija o fajlu prema potrebi
-    }
+    # json_data = {
+    #     'filename': document.file.name,
+    #     'file_size': document.file.size,
+    #     'file_type': mime_type,
+    #     "file_path" : document.file.path
+    #     # Dodajte više informacija o fajlu prema potrebi
+    # }
 
-    return Response(json_data)
+    # return Response(json_data)
 
 
 
