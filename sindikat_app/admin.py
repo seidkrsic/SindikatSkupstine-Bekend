@@ -117,7 +117,7 @@ def convert_filenames(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Image)
 @receiver(pre_save, sender=News)
-def convert_filenames(sender, instance, **kwargs):
+def convert_image_filenames(sender, instance, **kwargs):
     # Konverzija imena fajla
     if instance.image_url:
         original_filename = instance.image_url.name
