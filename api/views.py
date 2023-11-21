@@ -168,7 +168,12 @@ def download_important_document(request, pk):
     
     # Koristimo `FileResponse` sa postavljenim zaglavljima
     response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
-    response['Content-Disposition'] = f'attachment; filename="{document.title}"'
+    # response['Content-Disposition'] = f'attachment; filename="{document.title}"'
+    # Pokušaj postaviti Content-Disposition zaglavlje
+    try:
+        response['Content-Disposition'] = f'inline; filename="{document.title}"'
+    except Exception as e:
+        print(f"Error setting Content-Disposition: {e}") 
 
     return response
 
