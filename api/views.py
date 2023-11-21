@@ -171,7 +171,7 @@ def download_important_document(request, pk):
     # response['Content-Disposition'] = f'attachment; filename="{document.title}"'
     # Pokušaj postaviti Content-Disposition zaglavlje
     try:
-        response['Content-Disposition'] = f'inline; filename="{document.title}"'
+        response['Content-Disposition'] = f'inline; filename="{document.file.name}"'
     except Exception as e:
         print(f"Error setting Content-Disposition: {e}") 
 
