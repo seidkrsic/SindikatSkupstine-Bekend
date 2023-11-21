@@ -110,7 +110,7 @@ class ImportantDocumentsAdmin(admin.ModelAdmin):
 def convert_filenames(sender, instance, **kwargs):
     # Konverzija imena fajla
     if instance.file:
-        original_filename = str(instance.file.name)
+        original_filename = instance.file.name
         ascii_filename = unidecode(original_filename)
         instance.file.name = f"{ascii_filename}"
 
@@ -120,7 +120,7 @@ def convert_filenames(sender, instance, **kwargs):
 def convert_filenames(sender, instance, **kwargs):
     # Konverzija imena fajla
     if instance.image_url:
-        original_filename = str(instance.image_url.name)
+        original_filename = instance.image_url.name
         ascii_filename = unidecode(original_filename)
         instance.image_url.name = f'{ascii_filename}'
 
