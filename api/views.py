@@ -164,14 +164,14 @@ def download_important_document(request, pk):
     file_path = document.file.path
 
     # Koristimo `File` da dobijemo `content_type`
-    mime_type, _ = mimetypes.guess_type(file_path)
+    # mime_type, _ = mimetypes.guess_type(file_path)
+    return Response({"fajl": document.file})
 
+    # # Koristimo `FileResponse` sa postavljenim zaglavljima
+    # response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
+    # response['Content-Disposition'] = f'attachment; filename="{document.title}"'
 
-    # Koristimo `FileResponse` sa postavljenim zaglavljima
-    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
-    response['Content-Disposition'] = f'attachment; filename="{document.title}"'
-
-    return response
+    # return response
 
 
 
