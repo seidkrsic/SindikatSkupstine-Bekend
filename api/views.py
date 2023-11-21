@@ -166,26 +166,26 @@ def download_important_document(request, pk):
     # # Koristimo `File` da dobijemo `content_type`
     mime_type, _ = mimetypes.guess_type(file_path)
     
-    # Koristimo `FileResponse` sa postavljenim zaglavljima
-    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
-    # response['Content-Disposition'] = f'attachment; filename="{document.title}"'
-    # Pokušaj postaviti Content-Disposition zaglavlje
-    try:
-        response['Content-Disposition'] = f'inline; filename="{document.title}"'
-    except Exception as e:
-        print(f"Error setting Content-Disposition: {e}") 
+    # # Koristimo `FileResponse` sa postavljenim zaglavljima
+    # response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
+    # # response['Content-Disposition'] = f'attachment; filename="{document.title}"'
+    # # Pokušaj postaviti Content-Disposition zaglavlje
+    # try:
+    #     response['Content-Disposition'] = f'inline; filename="{document.title}"'
+    # except Exception as e:
+    #     print(f"Error setting Content-Disposition: {e}") 
 
-    return response
+    # return response
 
-    # json_data = {
-    #     'filename': document.file.name,
-    #     'file_size': document.file.size,
-    #     'file_type': mime_type,
-    #     "file_path" : document.file.path
-    #     # Dodajte više informacija o fajlu prema potrebi
-    # }
+    json_data = {
+        'filename': document.file.name,
+        'file_size': document.file.size,
+        'file_type': mime_type,
+        "file_path" : document.file.path
+        # Dodajte više informacija o fajlu prema potrebi
+    }
 
-    # return Response(json_data)
+    return Response(json_data)
 
 
 
