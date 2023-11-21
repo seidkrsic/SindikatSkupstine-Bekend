@@ -163,11 +163,8 @@ def download_important_document(request, pk):
 
     file_path = document.file.path
 
-    # Koristimo `mimetypes` modul da dobijemo MIME tip fajla
-    mime_type, encoding = mimetypes.guess_type(file_path)
-    
     # Koristimo `FileResponse` sa postavljenim zaglavljima
-    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=mime_type)
+    response = FileResponse(open(file_path, 'rb'), as_attachment=True, content_type=document.file.content_type)
     response['Content-Disposition'] = f'attachment; filename="{document.title}"'
 
     return response
