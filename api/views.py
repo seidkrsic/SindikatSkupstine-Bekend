@@ -164,8 +164,9 @@ def download_important_document(request, pk):
     file_path = document.file.path
 
     # Koristimo `File` da dobijemo `content_type`
-    with File(open(file_path, 'rb')) as file:
-        content_type = file.content_type
+    with open(file_path, 'rb') as file:
+        django_file = File(file)
+        content_type = django_file.content_type
 
 
     # Koristimo `FileResponse` sa postavljenim zaglavljima
