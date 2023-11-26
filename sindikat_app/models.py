@@ -42,6 +42,7 @@ class ImportantDocument(models.Model):
     laws = models.BooleanField(default=False, null=True, blank=True)
     regulations = models.BooleanField(default=False, null=True, blank=True)
     other = models.BooleanField(default=False, null=True, blank=True)
+    main = models.BooleanField(default=False, null=True, blank=True)
     title = models.CharField(max_length=200, blank=False, null=True) 
     title_cyrillic = models.CharField(max_length=200, blank=True, null=True) 
     created = models.DateTimeField(auto_now_add=True) 

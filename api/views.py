@@ -111,13 +111,13 @@ def getSession(request, pk):
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def importantDocuments(request): 
-    documents = ImportantDocument.objects.all()
+    documents = ImportantDocument.objects.all().order_by("-created")
     serializer = ImportantDocumentSerializer(instance=documents, many=True)
     return Response(serializer.data)
 
 @api_view(["GET"])
 def get_important_documents(request):
-    important_documents = ImportantDocument.objects.filter(important=True)[:5]
+    important_documents = ImportantDocument.objects.filter(main=True).order_by("-created")[:5]
     serializer = ImportantDocumentSerializer(instance=important_documents, many=True)
     return Response(serializer.data)
 
@@ -128,7 +128,7 @@ def get_all_documents(request):
         category = request.GET.get("name")
     except: 
         category = None
-    important_documents = ImportantDocument.objects.all()
+    important_documents = ImportantDocument.objects.all().order_by("created")
     if category is not None and category in ["laws", "legislation", "regulations", "other"]:  
         if category == "legislation": 
             queryset = important_documents.filter(legislation=True)
