@@ -144,7 +144,6 @@ def translate_latinic_to_cyrillic(text):
 # MODELS FOR USERS ....................................................................
 
 class Profile(models.Model): 
-    SEX_CHOICES = [("male", "Male"), ("female", "Female")]
     class Meta: 
         ordering = ['username']
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name='profile') 
