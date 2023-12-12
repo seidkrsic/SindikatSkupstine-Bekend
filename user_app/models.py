@@ -158,7 +158,6 @@ class Profile(models.Model):
     main_board_member = models.BooleanField(default=False, blank=True, null=True)
     board_member = models.BooleanField(default=False, blank=True, null=True)
     commission = models.BooleanField(default=False, blank=True, null=True) 
-    pol = models.BooleanField(default=False, blank=True, null=True) 
     bio = RichTextField(null=True, blank=True)   
     bio_cyrillic= RichTextField(blank=True, null=True) 
     profile_image = models.ImageField(blank=True, null=True, upload_to='', default=f"ArtBoard_2.png")
