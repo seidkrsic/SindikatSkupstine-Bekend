@@ -144,6 +144,7 @@ def translate_latinic_to_cyrillic(text):
 # MODELS FOR USERS ....................................................................
 
 class Profile(models.Model): 
+    SEX_CHOICES = [("Male", "male"), ("Female", "female")]
     class Meta: 
         ordering = ['username']
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True, related_name='profile') 
@@ -158,6 +159,7 @@ class Profile(models.Model):
     main_board_member = models.BooleanField(default=False, blank=True, null=True)
     board_member = models.BooleanField(default=False, blank=True, null=True)
     commission = models.BooleanField(default=False, blank=True, null=True)
+    sex = models.CharField(choices=SEX_CHOICES, blank=True, null=True, default="male")
     bio = RichTextField(null=True, blank=True)   
     bio_cyrillic= RichTextField(blank=True, null=True) 
     profile_image = models.ImageField(blank=True, null=True, upload_to='', default=f"ArtBoard_2.png")
