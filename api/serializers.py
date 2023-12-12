@@ -28,18 +28,30 @@ class ProfileSerializer(serializers.ModelSerializer):
     
     def get_active_role(request, obj): 
         if obj.active_president: 
+            if obj.male_female == True: 
+                return ("Predsjednica", "Предсједница")
             return ("Predsjednik", "Предсједник")
         elif obj.vice_president: 
+            if obj.male_female == True:
+                  return ("Zamjenica predsjednika", "Замјеница предсједника")
             return ("Zamjenik predsjednika", "Замјеник предсједника")
         elif obj.board_member: 
+            if obj.male_female == True:
+                return ("Članica Izvršnog odbora", "Чланица Извршног одбора")
             return ("Član Izvršnog odbora", "Члан Извршног одбора")
         elif obj.commission:
+            if obj.male_female == True:
+                return ("Članica Statutarne komisije", "Чланица Статутарне комисије")
             return ("Član Statutarne komisije", "Члан Статутарне комисије")
         elif obj.main_board_member: 
             return ("Nadzorni odbor", "Надзорни одбор")
         elif obj.president: 
-            return ("Bivši predsjednik", "Бивши предсједник")
+            if obj.male_female == True:
+                return ("Ranija predsjednica", "Ранија Предсједница")
+            return ("Raniji predsjednik", "Ранији предсједник")
         else: 
+            if obj.male_female == True:
+                return ("Članica sindikata", "Чланица синдиката")
             return ("Član sindikata", "Члан синдиката")
         
 
