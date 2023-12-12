@@ -174,18 +174,30 @@ class Profile(models.Model):
 
     @property
     def get_active_role(self): 
-        if self.active_president: 
+        if self.active_president:
+            if self.male_female == True: 
+                return ("Predsjednica", "Предсједница")
             return ("Predsjednik", "Предсједник")
         elif self.vice_president: 
+            if self.male_female == True: 
+                return ("Zamjenica predsjednika", "Замјеница предсједника")
             return ("Zamjenik predsjednika", "Замјеник предсједника")
         elif self.board_member: 
+            if self.male_female == True:
+                return ("Članica Izvršnog odbora", "Чланица Извршног одбора")
             return ("Član Izvršnog odbora", "Члан Извршног одбора")
         elif self.commission:
+            if self.male_female == True:
+                return ("Članica Statutarne komisije", "Чланица Статутарне комисије")
             return ("Član Statutarne komisije", "Члан Статутарне комисије")
         elif self.main_board_member: 
             return ("Nadzorni odbor", "Надзорни одбор")
         elif self.president: 
-            return ("Bivši predsjednik", "Бивши предсједник")
+            if self.male_female == True:
+                return ("Ranija predsjednica", "Ранија Предсједница")
+            return ("Raniji predsjednik", "Ранији предсједник")
         else: 
+            if self.male_female == True:
+                return ("Članica sindikata", "Чланица синдиката")
             return ("Član sindikata", "Члан синдиката")
 
