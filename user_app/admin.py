@@ -17,7 +17,6 @@ class ProfileForm(forms.ModelForm):
             'main_board_member': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
             'board_member': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),
             'commission': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),
-            'sex': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),
         }
 
 
