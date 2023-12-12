@@ -152,6 +152,7 @@ class Profile(models.Model):
     username = models.CharField(max_length=200, null=True) 
     email = models.EmailField(max_length=500, null=True, blank=True)  
     phone = models.CharField(max_length=15, null=True, blank=True)
+    male_female = models.BooleanField(default=False, blank=True, null=True) 
     active_president = models.BooleanField(default=False, blank=True, null=True)
     president = models.BooleanField(default=False, blank=True, null=True)
     vice_president = models.BooleanField(default=False, blank=True, null=True)
