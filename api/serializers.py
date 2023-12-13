@@ -110,10 +110,12 @@ class CompanySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_document(self,obj): 
-        if len(obj.company_documents) != 0:
+        try:
             serializers = CompanyDocumentSerializer(instance=obj.company_documents, many=False)
             return serializers.data
-        return "No documents"
+        except: 
+            return serializers.errors
+
 
 class CompanyDocumentSerializer(serializers.ModelSerializer): 
     download_link = serializers.SerializerMethodField()
