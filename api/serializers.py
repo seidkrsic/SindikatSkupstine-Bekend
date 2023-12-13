@@ -110,8 +110,10 @@ class CompanySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_document(self,obj): 
-        serializers = CompanyDocumentSerializer(instance=obj.company_documents, many=False)
-        return serializers.data
+        if obj.file:
+            serializers = CompanyDocumentSerializer(instance=obj.company_documents, many=False)
+            return serializers.data
+        return {}
 
 class CompanyDocumentSerializer(serializers.ModelSerializer): 
     download_link = serializers.SerializerMethodField()
