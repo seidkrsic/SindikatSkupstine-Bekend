@@ -114,7 +114,7 @@ class CompanySerializer(serializers.ModelSerializer):
             serializers = CompanyDocumentSerializer(instance=obj.company_documents, many=False)
             return serializers.data
         except: 
-            return serializers.errors
+            return "No documents."
 
 
 class CompanyDocumentSerializer(serializers.ModelSerializer): 
