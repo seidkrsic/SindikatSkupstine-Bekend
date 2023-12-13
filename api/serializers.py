@@ -110,7 +110,7 @@ class CompanySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_document(self,obj): 
-        if obj.file:
+        if len(obj.company_documents) != 0:
             serializers = CompanyDocumentSerializer(instance=obj.company_documents, many=False)
             return serializers.data
         return {}
