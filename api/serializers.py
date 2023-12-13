@@ -113,7 +113,7 @@ class CompanySerializer(serializers.ModelSerializer):
         if len(obj.company_documents) != 0:
             serializers = CompanyDocumentSerializer(instance=obj.company_documents, many=False)
             return serializers.data
-        return {}
+        return "No documents"
 
 class CompanyDocumentSerializer(serializers.ModelSerializer): 
     download_link = serializers.SerializerMethodField()
