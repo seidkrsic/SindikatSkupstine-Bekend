@@ -180,14 +180,8 @@ class NewsAdmin(admin.ModelAdmin):
             file_format = file.content_type
             print("File format:", file_format)
             if file_format in ['image/jpeg', 'image/jpg', 'image/png']:
-                
-                # Konverzija imena fajla
-                if file:
-                    original_filename = file.name
-                    ascii_filename = unidecode(original_filename)
-                    
-                   
-                news_image = Image(news=obj, image_url=f'{ascii_filename}')
+     
+                news_image = Image(news=obj, image_url=f'{file.name}')
                 news_image.save()
             else:
                 print("Skipping non-image file:", file)
