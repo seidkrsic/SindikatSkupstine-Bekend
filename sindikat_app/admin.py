@@ -185,7 +185,7 @@ class NewsAdmin(admin.ModelAdmin):
                     original_filename = str(file)
                     ascii_filename = unidecode(original_filename)
                    
-                news_image = Image(news=obj, image_url=f'images/{ascii_filename}')
+                news_image = Image(news=obj, image_url=f'{ascii_filename}')
                 news_image.save()
             else:
                 print("Skipping non-image file:", file)
