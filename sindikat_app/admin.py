@@ -180,8 +180,10 @@ class NewsAdmin(admin.ModelAdmin):
             file_format = file.content_type
             print("File format:", file_format)
             if file_format in ['image/jpeg', 'image/jpg', 'image/png']:
-                    news_image = Image(news=obj, image_url=f'{file.name}')
+                    news_image = Image(news=obj, image_url=file)
                     news_image.save()
+                    
+                    
             else:
                 print("Skipping non-image file:", file)
 
