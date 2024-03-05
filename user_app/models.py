@@ -155,7 +155,7 @@ class Profile(models.Model):
     male_female = models.BooleanField(default=False, blank=True, null=True) 
     active_president = models.BooleanField(default=False, blank=True, null=True)
     president = models.BooleanField(default=False, blank=True, null=True)
-    vice_president = models.BooleanField(default=False, blank=True, null=True)
+    secretary = models.BooleanField(default=False, blank=True, null=True)
     main_board_member = models.BooleanField(default=False, blank=True, null=True)
     board_member = models.BooleanField(default=False, blank=True, null=True)
     commission = models.BooleanField(default=False, blank=True, null=True) 
@@ -178,10 +178,10 @@ class Profile(models.Model):
             if self.male_female == True: 
                 return ("Predsjednica", "Предсједница")
             return ("Predsjednik", "Предсједник")
-        elif self.vice_president: 
+        elif self.secretary: 
             if self.male_female == True: 
-                return ("Zamjenica predsjednika", "Замјеница предсједника")
-            return ("Zamjenik predsjednika", "Замјеник предсједника")
+                return ("Generalna sekretarka", "Генерална секретарка")
+            return ("Generalni sekretar", "Генерални секретар")
         elif self.board_member: 
             if self.male_female == True:
                 return ("Članica Izvršnog odbora", "Чланица Извршног одбора")

@@ -31,10 +31,10 @@ class ProfileSerializer(serializers.ModelSerializer):
             if obj.male_female == True: 
                 return ("Predsjednica", "Предсједница")
             return ("Predsjednik", "Предсједник")
-        elif obj.vice_president: 
+        elif obj.secretary: 
             if obj.male_female == True:
-                  return ("Zamjenica predsjednika", "Замјеница предсједника")
-            return ("Zamjenik predsjednika", "Замјеник предсједника")
+                  return ("Generalna sekretarka", "Генерална секретарка")
+            return ("Generalni sekretar", "Генерални секретар")
         elif obj.board_member: 
             if obj.male_female == True:
                 return ("Članica Izvršnog odbora", "Чланица Извршног одбора")

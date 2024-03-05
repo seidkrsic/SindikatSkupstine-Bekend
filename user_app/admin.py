@@ -12,7 +12,7 @@ class ProfileForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'active_president': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
-            'vice_president': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),
+            'secretary': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),
             'president': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),
             'main_board_member': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))), 
             'board_member': forms.RadioSelect(choices=((True, 'Yes'), (False, 'No'))),

@@ -32,7 +32,7 @@ urlpatterns = [
     path('getProfile/<str:pk>/', views.get_profile), 
     path('paginationNews/', views.get_paginated_news),
     path("getPresident/", views.get_president), 
-    path("getVicePresident/", views.get_vice_president), 
+    path("getVicePresident/", views.get_secretary), 
     path("getMainBoardMembers/", views.get_main_board_members), 
 
 
