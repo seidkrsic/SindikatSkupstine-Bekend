@@ -222,6 +222,12 @@ def get_president(request):
     serializer = ProfileSerializer(instance=profile, many=False) 
     return Response(serializer.data) 
 
+@api_view(["GET"]) 
+def get_vice_president(request): 
+    profile = Profile.objects.filter(vice_president=True).first()
+    serializer = ProfileSerializer(instance=profile, many=False) 
+    return Response(serializer.data) 
+
 
 @api_view(["GET"]) 
 def get_secretary(request): 

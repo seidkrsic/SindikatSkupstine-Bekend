@@ -32,7 +32,8 @@ urlpatterns = [
     path('getProfile/<str:pk>/', views.get_profile), 
     path('paginationNews/', views.get_paginated_news),
     path("getPresident/", views.get_president), 
-    path("getVicePresident/", views.get_secretary), 
+    path("getVicePresident/", views.get_secretary), # ovo je za sekretara ipak (muka mi je bilo mijenjat)
+    path("get_vice_president/", views. get_vice_president), # ovo je putanja za zamjenika predsjednika 
     path("getMainBoardMembers/", views.get_main_board_members), 
 
 

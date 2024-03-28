@@ -155,6 +155,7 @@ class Profile(models.Model):
     male_female = models.BooleanField(default=False, blank=True, null=True) 
     active_president = models.BooleanField(default=False, blank=True, null=True)
     president = models.BooleanField(default=False, blank=True, null=True)
+    vice_president = models.BooleanField(default=False, blank=True, null=True) 
     secretary = models.BooleanField(default=False, blank=True, null=True)
     main_board_member = models.BooleanField(default=False, blank=True, null=True)
     board_member = models.BooleanField(default=False, blank=True, null=True)
