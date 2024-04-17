@@ -94,7 +94,7 @@ class ImportantDocumentSerializer(serializers.ModelSerializer):
         return file
 
     def get_download_link(self,obj): 
-        download_link = "https://apisindikat.skupstina.me/api/importantDocuments/" + str(obj.id) + "/download/" 
+        download_link = f"{settings.DOMAIN_URL}api/importantDocuments/" + str(obj.id) + "/download/" 
         return download_link
     
     def get_created_eu_time(self,obj): 
@@ -134,7 +134,7 @@ class CompanyDocumentSerializer(serializers.ModelSerializer):
         return file
     
     def get_download_link(self,obj): 
-        download_link = "https://apisindikat.skupstina.me/api/importantDocuments/" + str(obj.id) + "/download/" 
+        download_link = f"{settings.DOMAIN_URL}api/importantDocuments/" + str(obj.id) + "/download/" 
         return download_link
     
     def get_created_eu_time(self,obj): 
@@ -150,7 +150,7 @@ class DocumentSerializer(serializers.ModelSerializer):
         fields = "__all__"
     
     def get_download_link(self,obj): 
-        download_link = "https://apisindikat.skupstina.me/api/importantDocuments/" + str(obj.id) + "/download/" 
+        download_link = f"{settings.DOMAIN_URL}api/importantDocuments/" + str(obj.id) + "/download/" 
         return download_link
     
     def get_created_eu_time(self,obj): 
