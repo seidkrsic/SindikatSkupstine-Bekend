@@ -154,7 +154,7 @@ class News(models.Model):
     title = models.CharField(max_length=200, blank=False, null=True)
     title_cyrillic = models.CharField(max_length=200, blank=True, null=True)
     main = models.BooleanField(default=False, blank=True)
-    draft = models.BooleanField(default=False, blank=True)
+    # draft = models.BooleanField(default=False, blank=True)
     image_url = models.ImageField(blank=True, null=True, upload_to="", default=f"ArtBoard_2.png")
     content = RichTextField(null=True)
     content_cyrillic = RichTextField(null=True, blank=True)
