@@ -149,7 +149,8 @@ class News(models.Model):
         verbose_name = 'News'
         verbose_name_plural = 'News'
         ordering = ['-created']
-
+    
+    # ovo su polja u bazuuuu 
     title = models.CharField(max_length=200, blank=False, null=True)
     title_cyrillic = models.CharField(max_length=200, blank=True, null=True)
     main = models.BooleanField(default=False, blank=True)
