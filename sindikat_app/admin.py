@@ -166,8 +166,8 @@ class NewsAdmin(admin.ModelAdmin):
     inlines = [ImageInline]
     readonly_fields = ['owner']
     exclude = ['title_cyrillic', 'content_cyrillic']
-    list_display = ["title", "created", 'main', "draft"] 
-    list_filter = ['created', 'main', "draft"]
+    list_display = ["title", "created", 'main'] 
+    list_filter = ['created', 'main']
 
 
     def save_model(self, request, obj, form, change):
