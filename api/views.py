@@ -44,7 +44,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 @api_view(["GET"])
 def getNews(request): 
-    news = News.objects.all()[:3]
+    news = News.objects.filter(draft=False)[:3]
     serializers = NewsSerializer(instance=news, many=True)
     return Response(serializers.data) 
 
@@ -59,7 +59,7 @@ def getCompany(request):
 
 @api_view(["GET"])
 def getNewsForSlides(request): 
-    news = News.objects.filter(main=True)[:3]
+    news = News.objects.filter(main=True, draft=False)[:3]
     serializers = NewsSerializerForSlides(instance=news, many=True)
     return Response(serializers.data)
 
@@ -74,7 +74,7 @@ def getSingleNews(request, pk):
 def getFilteredNews(request): 
     search = request.data['search']
     print(search) 
-    matching_news = News.objects.filter(title__icontains=search)
+    matching_news = News.objects.filter(title__icontains=search, draft=False)
     if matching_news: 
         serializers = NewsSerializer(instance=matching_news, many=True) 
         return Response(serializers.data, status=status.HTTP_200_OK)
@@ -247,7 +247,7 @@ def get_main_board_members(request):
 
 @api_view(['GET'])
 def get_paginated_news(request):
-    queryset = News.objects.all()  # Get all News objects
+    queryset = News.objects.filter(draft=False)  # Get all News objects
 
     # category = request.GET.get('category')
     # if category:
