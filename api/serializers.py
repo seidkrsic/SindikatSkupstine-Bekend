@@ -18,7 +18,8 @@ def remove_dollars_sign(text):
     return translated_text
 
 def remove_blank_char(string): 
-    return string.replace(" ","-")
+    result = string.replace(" ","-")
+    return result 
 
 
 
