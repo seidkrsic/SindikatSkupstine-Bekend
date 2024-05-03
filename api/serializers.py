@@ -17,6 +17,10 @@ def remove_dollars_sign(text):
             translated_text += word + " "
     return translated_text
 
+def remove_blank_char(string): 
+    return string.replace(" ","-")
+
+
 
 class ProfileSerializer(serializers.ModelSerializer): 
     profile_image = serializers.SerializerMethodField()
@@ -221,6 +225,12 @@ class NewsSerializerForSlides(serializers.ModelSerializer):
     def get_nice_title(self, obj): 
         if obj.title: 
             return remove_dollars_sign(obj.title)
+        else: 
+            return "" 
+        
+    def get_url_title(self, obj): 
+        if obj.title: 
+            return remove_blank_char(obj.title)
         else: 
             return ""
 
