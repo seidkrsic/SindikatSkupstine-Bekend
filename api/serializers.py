@@ -279,6 +279,12 @@ class NewsSerializer(serializers.ModelSerializer):
             return remove_dollars_sign(obj.title)
         else: 
             return ""
+        
+    def get_url_title(self, obj): 
+        if obj.title: 
+            return remove_blank_char(obj.title)
+        else: 
+            return ""
 
     def get_nice_content(self,obj): 
         if obj.content: 
