@@ -215,6 +215,7 @@ class NewsSerializerForSlides(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
     nice_content = serializers.SerializerMethodField()
     nice_title = serializers.SerializerMethodField()
+    url_title = serializers.SerializerMethodField()
     class Meta: 
         model = News
         fields = "__all__"
@@ -257,6 +258,7 @@ class NewsSerializer(serializers.ModelSerializer):
     created_eu_time = serializers.SerializerMethodField()
     nice_content = serializers.SerializerMethodField()
     nice_title = serializers.SerializerMethodField()
+    url_title = serializers.SerializerMethodField()
     
     class Meta: 
         model = News
