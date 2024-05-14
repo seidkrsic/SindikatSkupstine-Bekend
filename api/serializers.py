@@ -177,6 +177,7 @@ class SessionSerializer(serializers.ModelSerializer):
     agenda_items = serializers.SerializerMethodField()
     documents = serializers.SerializerMethodField()
     created_eu_time = serializers.SerializerMethodField()
+    url_title = serializers.SerializerMethodField()
     class Meta: 
         model = Session
         fields = "__all__" 
@@ -185,6 +186,12 @@ class SessionSerializer(serializers.ModelSerializer):
         agenda_items = obj.agenda_items 
         serializer = Agenda_ItemsSerializer(instance=agenda_items, many=True)
         return serializer.data 
+
+    def get_url_title(self, obj): 
+        if obj.title: 
+            return remove_blank_char(obj.title)
+        else: 
+            return ""
     
     def get_documents(self,obj): 
         documents = obj.documents 
