@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from multiupload.fields import MultiFileField  # Import the MultiFileField
-from .models import CompanyDocument, Document, ImportantDocument, News, Image, Agenda_Item, Session, Company 
+from .models import CompanyDocument, Document, ImportantDocument, News, Image, Agenda_Item, Session, Company, SpecialDocument
 from django.utils.html import format_html
 # Register your models here.
 from django.db.models.signals import pre_save
@@ -105,6 +105,7 @@ class ImportantDocumentsAdmin(admin.ModelAdmin):
    
 
 
+@receiver(pre_save, sender=SpecialDocument)
 @receiver(pre_save, sender=ImportantDocument)
 @receiver(pre_save, sender=CompanyDocument)
 @receiver(pre_save, sender=Document)
@@ -124,6 +125,7 @@ def convert_image_filenames(sender, instance, **kwargs):
         original_filename = instance.image_url.name
         ascii_filename = unidecode(original_filename)
         instance.image_url.name = f'{ascii_filename}'
+
 
 class ImagesAdmin(admin.ModelAdmin):
     # Customize the child model admin as needed
@@ -190,6 +192,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 
 admin.site.register(News, NewsAdmin)
+admin.site.register(SpecialDocument)
 admin.site.register(Session, SessionAdmin)
 admin.site.register(Agenda_Item, Agenda_ItemsAdmin)
 admin.site.register(Document, DocumentsAdmin) 

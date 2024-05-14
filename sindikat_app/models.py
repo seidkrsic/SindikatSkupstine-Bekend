@@ -32,6 +32,30 @@ class Company(models.Model):
     def documents(self): 
         return self.company_documents
 
+
+
+class SpecialDocument(models.Model):
+    class Meta:
+        verbose_name = 'Special Document'
+        verbose_name_plural = 'Special Documents'
+    file = models.FileField(upload_to='documents/', blank=False, null=True) 
+    title = models.CharField(max_length=200, blank=False, null=True) 
+    title_cyrillic = models.CharField(max_length=200, blank=True, null=True) 
+    document_number = models.CharField(max_length=200, blank=True, null=True) 
+    created = models.DateTimeField(auto_now_add=True) 
+    id = models.UUIDField(default=uuid.uuid4,unique=True, 
+                                    primary_key=True, editable=False) 
+    
+    @property
+    def created_eu_time(self): 
+        return str(self.created)[8:10] + "-" + str(self.created)[5:7] + "-" + str(self.created)[:4]
+    
+    def __str__(self):
+        if self.title:
+            return self.document_number 
+        else: 
+            return ""
+
 class ImportantDocument(models.Model): 
     class Meta:
         verbose_name = 'Single Document'
@@ -264,7 +288,7 @@ def translate_latinic_to_cyrillic(text):
     return translated_text
 
 
-
+@receiver(pre_save, sender=SpecialDocument)
 @receiver(pre_save, sender=ImportantDocument)
 def translate_and_populate(sender, instance, **kwargs):
     if instance.title:  # Assuming name_latinic is the field to be translated

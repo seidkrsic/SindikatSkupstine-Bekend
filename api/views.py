@@ -4,15 +4,16 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from api import serializers
-from api.serializers import CompanySerializer, ImportantDocumentSerializer, NewsSerializer, NewsSerializerForSlides, ProfileSerializer, SessionSerializer
-from sindikat_app.models import Company, Image, Document, Agenda_Item, ImportantDocument, News, Session, CompanyDocument
+from api.serializers import CompanySerializer, ImportantDocumentSerializer, NewsSerializer, NewsSerializerForSlides, ProfileSerializer, SessionSerializer, SpecialDocumentSerializer
+from sindikat_app.models import Company, Image, Document, Agenda_Item, ImportantDocument, News, Session, CompanyDocument, SpecialDocument
 from user_app.models import Profile 
-from .pagination import NewsPagination 
+from .pagination import NewsPagination, SpecialDocumentPagination
 from django.http import FileResponse
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.core.files import File
 import mimetypes
+from django.db.models import Q
 # Create your views here.
 
 
@@ -73,7 +74,6 @@ def getSingleNews(request, pk):
 @api_view(["POST"]) 
 def getFilteredNews(request): 
     search = request.data['search']
-    print(search) 
     matching_news = News.objects.filter(title__icontains=search, draft=False)
     if matching_news: 
         serializers = NewsSerializer(instance=matching_news, many=True) 
@@ -158,7 +158,10 @@ def download_important_document(request, pk):
             try: 
                 document = CompanyDocument.objects.get(id=pk)
             except: 
-                return Response("Document not Found.")
+                try: 
+                    document = SpecialDocument.objects.get(id=pk)
+                except:
+                    return Response("Document not Found.")
         
 
     file_path = document.file.path
@@ -249,10 +252,6 @@ def get_main_board_members(request):
 def get_paginated_news(request):
     queryset = News.objects.filter(draft=False)  # Get all News objects
 
-    # category = request.GET.get('category')
-    # if category:
-    #     queryset = queryset.filter(category=category) 
-    # # Apply the custom pagination
     paginator = NewsPagination()
     paginated_queryset = paginator.paginate_queryset(queryset, request)
 
@@ -264,8 +263,18 @@ def get_paginated_news(request):
 
 
 
-
-
+@api_view(["POST"])  
+def get_special_documents(request): 
+    if request.method == "POST": 
+        search = request.data['search']
+        queryset = SpecialDocument.objects.filter(Q(title__icontains=search) | Q(document_number__icontains=search) )
+        if queryset:
+            paginator = SpecialDocumentPagination() 
+            paginated_queryset = paginator.paginate_queryset(queryset, request) 
+            serializer = SpecialDocumentSerializer(paginated_queryset, many=True) 
+            return paginator.get_paginated_response(serializer.data) 
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from sindikat_app.models import Agenda_Item, Company, CompanyDocument, Document, News, Image, Session, ImportantDocument
+from sindikat_app.models import Agenda_Item, Company, CompanyDocument, Document, News, Image, Session, ImportantDocument, SpecialDocument
 from user_app.models import Profile 
 from django.conf import settings
 from bs4 import BeautifulSoup
@@ -145,7 +145,18 @@ class CompanyDocumentSerializer(serializers.ModelSerializer):
     def get_created_eu_time(self,obj): 
         return obj.created_eu_time
 
+class SpecialDocumentSerializer(serializers.ModelSerializer):
+    download_link = serializers.SerializerMethodField()
+    class Meta: 
+        model = SpecialDocument 
+        fields = "__all__"
 
+    def get_download_link(self,obj): 
+        download_link = f"{settings.DOMAIN_URL}api/importantDocuments/" + str(obj.id) + "/download/" 
+        return download_link
+
+    def get_created_eu_time(self,obj): 
+        return obj.created_eu_time
 
 class DocumentSerializer(serializers.ModelSerializer): 
     download_link = serializers.SerializerMethodField()

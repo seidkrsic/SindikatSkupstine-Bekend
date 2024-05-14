@@ -35,6 +35,7 @@ urlpatterns = [
     path("getVicePresident/", views.get_secretary), # ovo je za sekretara ipak (muka mi je bilo mijenjat)
     path("get_vice_president/", views. get_vice_president), # ovo je putanja za zamjenika predsjednika 
     path("getMainBoardMembers/", views.get_main_board_members), 
+    path("getSpecialDocuments/", views.get_special_documents),
 
 
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
