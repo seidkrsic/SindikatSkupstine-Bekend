@@ -17,7 +17,7 @@ def remove_dollars_sign(text):
             translated_text += word + " "
     return translated_text
 
-def remove_blank_char(string): 
+def remove_blank_char(title):  
     replacements = {
         "ć": "c",
         "č": "c",
