@@ -18,8 +18,19 @@ def remove_dollars_sign(text):
     return translated_text
 
 def remove_blank_char(string): 
-    result = string.replace(" ","-")
-    return result 
+    replacements = {
+        "ć": "c",
+        "č": "c",
+        "š": "s",
+        "ž": "z",
+        "đ": "dj",
+        " ": "-",
+        # Dodajte druge specijalne znakove po potrebi
+    }
+    for key, value in replacements.items():
+        title = title.replace(key, value)
+    encoded_title = title.replace(" ", "-")
+    return encoded_title
 
 
 
