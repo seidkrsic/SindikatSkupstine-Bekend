@@ -24,7 +24,6 @@ def remove_blank_char(string):
         "š": "s",
         "ž": "z",
         "đ": "dj",
-        " ": "-",
         # Dodajte druge specijalne znakove po potrebi
     }
     for key, value in replacements.items():
