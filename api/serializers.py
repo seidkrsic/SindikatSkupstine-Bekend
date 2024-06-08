@@ -3,7 +3,7 @@ from sindikat_app.models import Agenda_Item, Company, CompanyDocument, Document,
 from user_app.models import Profile 
 from django.conf import settings
 from bs4 import BeautifulSoup
-
+import re 
 
 
 def remove_dollars_sign(text): 
@@ -23,12 +23,17 @@ def remove_blank_char(title):
         "č": "c",
         "š": "s",
         "ž": "z",
-        "đ": "dj",
-        # Dodajte druge specijalne znakove po potrebi
+        "đ": "dj"
     }
     for key, value in replacements.items():
         title = title.replace(key, value)
+
+    # Uklanjanje svih znakova interpunkcije
+    title = re.sub(r'[^\w\s-]', '', title)
+    
+    # Zamena razmaka crticama
     encoded_title = title.replace(" ", "-")
+    
     return encoded_title
 
 
