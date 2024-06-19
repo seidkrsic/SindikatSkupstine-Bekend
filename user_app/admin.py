@@ -14,10 +14,10 @@ from django.dispatch import receiver
 @receiver(pre_save, sender=Profile)
 def convert_filenames(sender, instance, **kwargs):
     # Konverzija imena fajla
-    if instance.file:
-        original_filename = instance.file.name
+    if instance.profile_image:
+        original_filename = instance.profile_image.name
         ascii_filename = unidecode(original_filename)
-        instance.file.name = f"{ascii_filename}"
+        instance.profile_image.name = f"{ascii_filename}"
 
 
 
