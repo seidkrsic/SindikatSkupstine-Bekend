@@ -202,3 +202,5 @@ class Profile(models.Model):
                 return ("Članica sindikata", "Чланица синдиката")
             return ("Član sindikata", "Члан синдиката")
 
+
+

@@ -1,8 +1,23 @@
 from django.contrib import admin
 from .models import Profile 
 from django import forms 
-from django.utils.html import format_html
+from django.utils.html import format_html 
+from unidecode import unidecode
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 # Register your models here.
+
+
+
+
+
+@receiver(pre_save, sender=Profile)
+def convert_filenames(sender, instance, **kwargs):
+    # Konverzija imena fajla
+    if instance.file:
+        original_filename = instance.file.name
+        ascii_filename = unidecode(original_filename)
+        instance.file.name = f"{ascii_filename}"
 
 
 
