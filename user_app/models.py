@@ -162,7 +162,7 @@ class Profile(models.Model):
     commission = models.BooleanField(default=False, blank=True, null=True) 
     bio = RichTextField(null=True, blank=True)   
     bio_cyrillic= RichTextField(blank=True, null=True) 
-    profile_image = models.ImageField(blank=True, null=True, upload_to='', default=f"default_logo")
+    profile_image = models.ImageField(blank=True, null=True, upload_to='', default=f"ArtBoard_2.png")
     created = models.DateTimeField(auto_now_add=True) 
     id = models.UUIDField(default=uuid.uuid4,unique=True, 
                                     primary_key=True, editable=False) 
